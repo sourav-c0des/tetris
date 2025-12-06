@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tetris-frontend
+  namespace: tetris-game
+  labels:
+    app: tetris-frontend
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tetris-frontend
+  template:
+    metadata:
+      labels:
+        app: tetris-frontend
+        version: v1
+
+    spec:
+      containers:
+      - name: tetris-frontend
+        image: ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/tetris-frontend:latest
+        ports:
+        - containerPort: 80
+          name: http
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tetris-frontend-service
+  namespace: tetris-game
+  labels:
+    app: tetris-frontend
+spec:
+  selector:
+    app: tetris-frontend
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  type: ClusterIP
+
