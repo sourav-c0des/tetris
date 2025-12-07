@@ -1,4 +1,4 @@
-Tetris Game | Full-Stack Application (FastAPI + React + Kubernetes + AWS)
+## Tetris Game | Full-Stack Application (FastAPI + React + Kubernetes + AWS)
 
 A fully containerized, cloud-ready Tetris simulation engine with:
 
