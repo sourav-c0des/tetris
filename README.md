@@ -11,46 +11,48 @@ AWS EKS + ECR + ALB controller support
 
 This project demonstrates end-to-end full-stack + DevOps capability, suitable for interviews and production-grade architecture.
 
-📁 Project Structure
 tetris-game/
 │
-├── backend/                # FastAPI backend (game engine)
-│   ├── main.py
-│   ├── tetris_game.py
-│   └── Dockerfile
+├── backend/ # FastAPI backend (Tetris engine)
+│ ├── main.py # API entrypoint
+│ ├── tetris_game.py # Full Tetris logic implementation
+│ ├── input.txt # Predefined sequences
+│ └── Dockerfile # Backend container image
 │
-├── frontend/               # React + Vite + TypeScript UI
-│   ├── src/components/
-│   ├── src/services/
-│   ├── src/types/
-│   └── Dockerfile
+├── frontend/ # React + Vite + TypeScript UI
+│ ├── src/
+│ │ ├── components/ # UI components (Grid, Controls, Selector)
+│ │ ├── services/ # API client (fetch backend)
+│ │ ├── types/ # Shared TypeScript types
+│ │ └── App.tsx # Main application
+│ └── Dockerfile # Frontend container image
 │
-├── k8s/                    # Kubernetes manifests
-│   ├── namespace.yaml
-│   ├── backend-deployment.yaml
-│   ├── frontend-deployment.yaml
-│   ├── ingress.yaml
-│   ├── aws-backend-deployment.yaml
-│   ├── aws-frontend-deployment.yaml
-│   └── aws-ingress.yaml
+├── k8s/ # Kubernetes manifests
+│ ├── namespace.yaml
+│ ├── backend-deployment.yaml
+│ ├── frontend-deployment.yaml
+│ ├── ingress.yaml # Local NGINX ingress
+│ ├── aws-backend-deployment.yaml
+│ ├── aws-frontend-deployment.yaml
+│ └── aws-ingress.yaml # AWS ALB ingress
 │
-├── docker-compose.yml      # Local multi-container setup
+├── docker-compose.yml # Local multi-container setup
 │
-├── deploy.sh               # Local K8s deploy (Linux/Mac)
-├── deploy.ps1              # Local K8s deploy (Windows)
+├── deploy.sh # Local K8s deploy (Linux/Mac)
+├── deploy.ps1 # Local K8s deploy (Windows)
 │
-├── aws-deploy.sh           # Build + Push images + Create cluster (Linux)
-├── aws-deploy.ps1          # Windows version
+├── aws-deploy.sh # Build + Push images + Create AWS infra
+├── aws-deploy.ps1 # Windows version
 │
-├── cloudshell-deploy.sh    # EKS deployment using AWS CloudShell
-├── cloudshell-app-deploy.sh
+├── cloudshell-deploy.sh # EKS deployment from AWS CloudShell
+├── cloudshell-app-deploy.sh # Application deployment to EKS
 │
-├── deploy-to-aws.ps1       # Deploy manifests to AWS EKS
+├── deploy-to-aws.ps1 # Apply Kubernetes manifests to EKS
 │
-├── DEPLOYMENT.md           # Full deployment documentation
-├── aws-setup.md            # AWS walk-through guide
+├── DEPLOYMENT.md # Full deployment guide
+├── aws-setup.md # AWS walkthrough reference
 │
-└── README.md               # ← You are here
+└── README.md # This file
 
 Features
 🧠 FastAPI Backend
