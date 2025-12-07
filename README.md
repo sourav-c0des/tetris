@@ -2,101 +2,88 @@
 
 A fully containerized, cloud-ready Tetris simulation engine with:
 
-FastAPI backend (Python) implementing complete Tetris game logic
-React + TypeScript frontend for real-time visualization
-Dockerized backend & frontend
-Kubernetes deployments (local + AWS EKS)
-NGINX + Ingress routing
-AWS EKS + ECR + ALB controller support
+- FastAPI backend (Python) implementing complete Tetris game logic..
+
+- React + TypeScript frontend for real-time visualization..
+
+- Dockerized backend & frontend..
+
+- Kubernetes deployments (local + AWS EKS)..
+
 
 This project demonstrates end-to-end full-stack + DevOps capability, suitable for interviews and production-grade architecture.
-
-Features
-🧠 FastAPI Backend
-
 Implements full Tetris mechanics:
-Piece movement, collisions, boundaries
-Line clearing
-Height calculation
-API Endpoints:
-    GET /sequences → predefined sequences
-    POST /game/start → start simulation
-    POST /game/{id}/next → place next piece
-    GET /game/{id} → current game state
+- Piece movement, collisions, boundaries
+- Line clearing
+- Height calculation
 
-🎨 React Frontend
+API Endpoints:..
 
-Real-time Tetris grid visualization
+    - GET /sequences → predefined sequences
+    
+    - POST /game/start → start simulation
+    
+    - POST /game/{id}/next → place next piece
+    
+    - GET /game/{id} → current game state
+    
 
-Shows:
+## 🐳 Dockerized
 
-Current height
-Next piece
-Moves history
-Game progress
-Automatic API querying with React Query
+Backend & Frontend each have their own Dockerfile. You can run the full stack using:
 
-🐳 Dockerized
+- docker-compose up --build
 
-Backend & Frontend each have their own Dockerfile
-You can run the full stack using:
-
-docker-compose up --build
-
-☸️ Kubernetes Ready
+## ☸️ Kubernetes Ready
 
 Includes manifests for:
-Local deployment (NGINX ingress)
-AWS EKS deployment (ALB ingress)
+- Local deployment (NGINX ingress)
+- AWS EKS deployment (ALB ingress)
 
 Supports:
 
-Probes (Liveness/Readiness)
-Resource Limits
-Replicas
-Namespace isolation
+- Probes (Liveness/Readiness)
+- Resource Limits
+- Replicas
+- Namespace isolation
 
-☁️ AWS EKS Deployment
+## ☁️ AWS EKS Deployment
 
 Fully automated using:
 
-aws-deploy.sh / aws-deploy.ps1 → Build Docker images, push to ECR, create EKS cluster
-deploy-to-aws.ps1 → Deploy application to AWS
-cloudshell-deploy.sh & cloudshell-app-deploy.sh → One-click deployment from AWS CloudShell
+- aws-deploy.sh / aws-deploy.ps1 → Build Docker images, push to ECR, create EKS cluster
+- deploy-to-aws.ps1 → Deploy application to AWS
+- cloudshell-deploy.sh & cloudshell-app-deploy.sh → One-click deployment from AWS CloudShell
 
 Creates:
 
-ECR Repositories
-EKS Cluster
-Autoscaling nodes
-AWS Load Balancer Controller
-ALB Ingress with DNS hostname
+- ECR Repositories
+- EKS Cluster
+- AWS Load Balancer Controller
+- ALB Ingress with DNS hostname
+```bash
+# Local Development
 
-🛠️ Local Development
 1. Clone the repo
-git clone https://github.com/YOUR-USERNAME/TETRIS-REPO.git
-cd tetris-game
+   git clone https://github.com/YOUR-USERNAME/TETRIS-REPO.git
+   cd tetris-game
 
-Option A — Run Locally (Dev Mode)
-Backend
-cd backend
-uvicorn main:app --reload --port 8000
+Option A — Run Locally (Dev Mode):
 
-Frontend
-cd frontend
-npm install
-npm run dev
+Backend:
+  cd backend
+  uvicorn main:app --reload --port 8000
 
+Frontend:
+  cd frontend
+  npm install
+  npm run dev
 
-Frontend will run on:
-👉 http://localhost:5173
-
-Backend at:
-👉 http://localhost:8000
+Frontend will run on: http://localhost:5173
+Backend will run on:  http://localhost:8000
 
 Option B — Run with Docker Compose (Recommended)
-docker-compose up --build
-
+  docker-compose up --build
 
 Opens at:
 Frontend: http://localhost:3000
@@ -125,13 +112,13 @@ Windows
 
 2. Deploy the actual application
 .\deploy-to-aws.ps1
-
+```
 
 This will:
-✔ Update manifests with correct ECR URLs
-✔ Deploy backend + frontend
-✔ Deploy ALB ingress
-✔ Print the public URL
+- ✔ Update manifests with correct ECR URLs
+- ✔ Deploy backend + frontend
+- ✔ Deploy ALB ingress
+- ✔ Print the public URL
 
 🧾 License
 
